@@ -4,3 +4,4 @@ export * from './home';
 export * from './categories';
 export * from './cart';
 export * from './profile';
+export * from './register';

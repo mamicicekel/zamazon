@@ -3,7 +3,6 @@ import React from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { useNavigation } from '@react-navigation/native';
 
 import { Button, ControlledInput, Image, Text, View } from '@/ui';
 
@@ -18,6 +17,14 @@ const schema = z.object({
       required_error: 'Password is required',
     })
     .min(6, 'Password must be at least 6 characters'),
+    confirmPassword: z
+    .string({
+      required_error: 'Password is required',
+    })
+    .min(6, 'Password must be at least 6 characters'),
+}).refine((values) => values.password === values.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
 });
 
 export type FormType = z.infer<typeof schema>;
@@ -26,15 +33,12 @@ export type LoginFormProps = {
   onSubmit?: SubmitHandler<FormType>;
 };
 
-
-export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
+export const RegisterForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
-  const { navigate } = useNavigation();
-
   return (
-    <View className="flex-1 justify-center px-4">
+    <View className="flex-1 justify-center p-4">
       <Image 
         className="h-16 w-44 object-cover self-center mb-20"
         source={require('../../../assets/logo.png')}
@@ -43,7 +47,6 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         testID="email-input"
         control={control}
         name="email"
-        placeholder='example@zamazon.com'
         label="Email"
       />
       <ControlledInput
@@ -54,25 +57,19 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         placeholder="******"
         secureTextEntry={true}
       />
+      <ControlledInput
+        testID="password-input"
+        control={control}
+        name="confirmPassword"
+        label="Confirm Password"
+        placeholder="******"
+        secureTextEntry={true}
+      />
       <Button
         testID="login-button"
-        label="Login"
+        label="Sign Up"
         onPress={handleSubmit(onSubmit)}
         variant="secondary"
-      />
-      <Text className='self-end py-2 font-bold color-primary-500 text-sm'>Forgot Password?</Text>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View className='flex-1 h-px bg-neutral-400'/>
-          <View>
-            <Text className='w-auto text-center text-neutral-700 py-5'> New to Zamazon? </Text>
-          </View>
-        <View className='flex-1 h-px bg-neutral-400' />
-      </View>
-      <Button
-        testID="register-button"
-        label="Register"
-        onPress={() => navigate('Register')}
-        variant="outline"
       />
     </View>
   );

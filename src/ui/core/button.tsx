@@ -33,8 +33,8 @@ export const buttonVariants: BVariant = {
     indicator: 'text-white',
   },
   outline: {
-    container: 'border border-neutral-400',
-    label: 'text-black dark:text-charcoal-100',
+    container: 'border border-primary-600',
+    label: 'text-primary-800 dark:text-charcoal-100',
     indicator: 'text-black',
   },
 };

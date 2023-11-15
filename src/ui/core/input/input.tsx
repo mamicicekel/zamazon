@@ -31,16 +31,16 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
     : isFocussed
     ? isDark
       ? 'border-white'
-      : 'border-neutral-600'
+      : 'border-primary-600'
     : isDark
-    ? 'border-charcoal-700'
-    : 'border-neutral-400';
+    ? 'border-charcoal-200'
+    : 'border-primary-600';
 
   const bgColor = isDark
     ? 'bg-charcoal-800'
     : error
     ? 'bg-danger-50'
-    : 'bg-neutral-200';
+    : 'bg-neutral-50';
   const textDirection = isRTL ? 'text-right' : 'text-left';
   return (
     <View className="mb-4">
@@ -62,7 +62,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
         testID="STextInput"
         ref={ref}
         placeholderTextColor={colors.neutral[400]}
-        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px] ${textDirection} dark:text-charcoal-100`}
+        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-xl ${bgColor} text-[16px] ${textDirection} dark:text-charcoal-100`}
         onBlur={onBlur}
         onFocus={onFocus}
         {...inputProps}
