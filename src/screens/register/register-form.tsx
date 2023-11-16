@@ -29,11 +29,11 @@ const schema = z.object({
 
 export type FormType = z.infer<typeof schema>;
 
-export type LoginFormProps = {
+export type RegisterFormProps = {
   onSubmit?: SubmitHandler<FormType>;
 };
 
-export const RegisterForm = ({ onSubmit = () => {} }: LoginFormProps) => {
+export const RegisterForm = ({ onSubmit = () => {} }: RegisterFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
@@ -48,6 +48,8 @@ export const RegisterForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         control={control}
         name="email"
         label="Email"
+        placeholder='example@zamazon.com'
+
       />
       <ControlledInput
         testID="password-input"
