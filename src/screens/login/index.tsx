@@ -8,12 +8,7 @@ import { FocusAwareStatusBar } from '@/ui';
 import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';
 
-import 'react-native-url-polyfill/auto'
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = 'https://kblqszcndfjpsuenukxq.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtibHFzemNuZGZqcHN1ZW51a3hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDAwNzY5ODQsImV4cCI6MjAxNTY1Mjk4NH0.CLS3-BVPSjlgT9RflKbu4TlWvzgGIZ9VjbKEs7mLeK4'
-const supabase = createClient(supabaseUrl, supabaseKey);
+import {supabase} from '../../api/supabase'
 
 export const Login = () => {
   const signIn = useAuth.use.signIn();

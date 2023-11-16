@@ -60,7 +60,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         onPress={handleSubmit(onSubmit)}
         variant="secondary"
       />
-      <Text className='self-end py-2 font-bold color-primary-500 text-sm'>Forgot Password?</Text>
+      <Text className='self-end py-2 font-bold color-primary-500 text-sm' onPress={() => navigate('ForgotPassword')}>Forgot Password?</Text>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View className='flex-1 h-px bg-neutral-400'/>
           <View>
