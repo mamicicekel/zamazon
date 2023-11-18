@@ -3,6 +3,7 @@ import { Dimensions } from 'react-native';
 import { SafeAreaView, Text, Input, ScrollView, View, Image } from '@/ui'
 import { NCarousel } from './carousel';
 import { QuadrupleBoxGroup } from './quadruple-box-group';
+import { HorizontalBoxGroup } from './horizontal-box-group';
 
 export const Home = () => {
   
@@ -15,6 +16,7 @@ export const Home = () => {
         />
         </View>
         <NCarousel/>
+        <HorizontalBoxGroup/>
         <QuadrupleBoxGroup/>
       </ScrollView>
     </SafeAreaView>

@@ -12,7 +12,7 @@ interface Product {
   rating: number;
 }
 
-export const QuadrupleBoxGroup = () => {
+export const HorizontalBoxGroup = () => {
   const width = Dimensions.get('window').width;
 
   const [products, setProducts] = useState([]);
@@ -20,8 +20,9 @@ export const QuadrupleBoxGroup = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://dummyjson.com/products/category/smartphones');
-        setProducts(response.data.products);
+        const response = await axios.get('https://dummyjson.com/products/');
+        const shuffledProducts = response.data.products.sort(() => Math.random() - 0.5);
+        setProducts(shuffledProducts);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -36,15 +37,13 @@ export const QuadrupleBoxGroup = () => {
 
   return (
     <View className='flex-1 justify-center items-center'>
-      <Text className='self-start text-xl font-semibold mt-10 mb-3 ml-4 text-gray-700'>Opportunities for you</Text>
+      <Text className='self-start text-xl font-semibold mt-10 mb-3 ml-4 text-gray-700'>May interest you</Text>
       <FlatList
-      data={products.slice(0,4)}
+      data={products}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
-      horizontal={false}
-      numColumns={2}
-      scrollEnabled={false}
-      columnWrapperStyle={{ gap: 10 }}
+      horizontal={true}
+      scrollEnabled={true}
     />
     </View>
   )
