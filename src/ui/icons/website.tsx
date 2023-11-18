@@ -8,7 +8,7 @@ export const Website = ({
   color = colors.neutral[500],
   ...props
 }: SvgProps) => (
-  <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
+  <Svg width={36} height={36} fill="none" viewBox="0 0 24 24" {...props}>
     <G
       clipPath="url(#a)"
       stroke={color}

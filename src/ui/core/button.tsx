@@ -10,7 +10,7 @@ type Variant = {
   label: string;
   indicator: string;
 };
-type VariantName = 'defaults' | 'primary' | 'outline' | 'secondary';
+type VariantName = 'defaults' | 'primary' | 'outline' | 'secondary' | 'signOut';
 type BVariant = {
   [key in VariantName]: Variant;
 };
@@ -34,6 +34,11 @@ export const buttonVariants: BVariant = {
   },
   outline: {
     container: 'border border-primary-600',
+    label: 'text-primary-800 dark:text-charcoal-100',
+    indicator: 'text-black',
+  },
+  signOut: {
+    container: 'border border-primary-600 rounded-md mx-4',
     label: 'text-primary-800 dark:text-charcoal-100',
     indicator: 'text-black',
   },

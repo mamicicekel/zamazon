@@ -8,10 +8,10 @@ import { FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 import colors from '@/ui/theme/colors';
 
-import { Item } from './item';
-import { ItemsContainer } from './items-container';
-import { LanguageItem } from './language-item';
-import { ThemeItem } from './theme-item';
+import { Item } from '../profile/item';
+import { ItemsContainer } from '../profile/items-container';
+import { LanguageItem } from '../profile/language-item';
+import { ThemeItem } from '../profile/theme-item';
 
 export const Settings = () => {
   const signOut = useAuth.use.signOut();
