@@ -555,7 +555,7 @@ PODS:
     - React-perflogger (= 0.72.6)
   - ReactNativeAvoidSoftinput (4.0.1):
     - React-Core
-  - RNCMaskedView (0.3.0):
+  - RNCMaskedView (0.2.8):
     - React-Core
   - RNFlashList (1.4.3):
     - React-Core
@@ -906,7 +906,7 @@ SPEC CHECKSUMS:
   React-utils: fa59c9a3375fb6f4aeb66714fd3f7f76b43a9f16
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
   ReactNativeAvoidSoftinput: a096aae8faf85c0f3225c2179bccdab00b8b6354
-  RNCMaskedView: f7c74478c83c4fdfc5cf4df51f80c0dd5cf125c6
+  RNCMaskedView: bc0170f389056201c82a55e242e5d90070e18e5a
   RNFlashList: ade81b4e928ebd585dd492014d40fb8d0e848aab
   RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
   RNReanimated: 9f7068e43b9358a46a688d94a5a3adb258139457
