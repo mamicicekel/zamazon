@@ -7,6 +7,8 @@ import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 
 import { Home, Categories, Cart, Profile } from '@/screens';
+import { CategoryNavigator } from './category-navigator';
+
 import {
   colors,
   Categories as CategoriesIcon,
@@ -17,7 +19,7 @@ import {
 
 type TabParamList = {
   Home: undefined;
-  Categories: undefined;
+  CategoryNavigator: undefined;
   Cart: undefined;
   Profile: undefined;
 };
@@ -36,7 +38,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 const tabsIcons: TabIconsType = {
   Home: (props: SvgProps) => <HomeIcon {...props} />,
-  Categories: (props: SvgProps) => <CategoriesIcon {...props} />,
+  CategoryNavigator: (props: SvgProps) => <CategoriesIcon {...props} />,
   Cart: (props: SvgProps) => <CartIcon {...props} />,
   Profile: (props: SvgProps) => <ProfileIcon {...props} />,
 };
@@ -53,8 +55,8 @@ const tabs: TabType[] = [
     label: 'Home',
   },
   {
-    name: 'Categories',
-    component: Categories,
+    name: 'CategoryNavigator',
+    component: CategoryNavigator,
     label: 'Categories',
   },
   {

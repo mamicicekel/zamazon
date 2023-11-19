@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Input, SafeAreaView, Text, ScrollView } from '@/ui'
-import { List } from './list'
+import { CategoryList } from './category-list'
 
 export const Categories = () => {
   return (
@@ -11,7 +11,7 @@ export const Categories = () => {
           placeholder='Search products'
         />
         </View>
-      <List/>
+      <CategoryList/>
       </ScrollView>
     </SafeAreaView>
   )

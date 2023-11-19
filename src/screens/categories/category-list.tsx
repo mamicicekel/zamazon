@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {  FlatList, Dimensions } from 'react-native';
 import { Container } from './container';
 import { fetchCategories } from '@/api';
-import { View, Text } from '@/ui';
+import { View, Text, TouchableOpacity } from '@/ui';
 import { categoryImages } from './images';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { mapCategoryName, mapReverseCategoryName } from '@/core';
+import { useNavigation } from '@react-navigation/native';
 
-export const List = () => {
+export const CategoryList = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,42 +28,26 @@ export const List = () => {
     fetchData();
   }, []);
 
-  const mapCategoryName = (category: string) => {
-    const categoryMappings: Record<string, string> = {
-      'smartphones': 'Smart Phones',
-      'laptops': 'Laptops',
-      'fragrances': 'Fragrances',
-      'skincare': 'Skincare',
-      'groceries': 'Groceries',
-      'home-decoration': 'Home Decoration',
-      'furniture': 'Furniture',
-      'tops': 'Tops',
-      'womens-dresses': 'Womens Dresses',
-      'womens-shoes': 'Womens Shoes',
-      'mens-shirts': 'Mens Shirts',
-      'mens-shoes': 'Mens Shoes',
-      'mens-watches': 'Mens Watches',
-      'womens-watches': 'Womens Watches',
-      'womens-bags': 'Womens Bags',
-      'womens-jewellery': 'Womens Jewellery',
-      'sunglasses': 'Sunglasses',
-      'automotive': 'Automotive',
-      'motorcycle': 'Motorcycle',
-      'lighting': 'Lighting',
-    };
-
-    return categoryMappings[category] || category;
-  };
 
   const renderItem = ({ item }: { item: string }) => {
     const categoryIndex = categories.findIndex(category => category === item);
-
-    // Get the corresponding image if the index is valid
     const categoryImage = categoryIndex !== -1 ? categoryImages[categoryIndex]?.url : undefined;
 
-    return <Container category={item} image={categoryImage}/>
+    const handleCategoryPress = () => {
+      const mappedCategory = mapReverseCategoryName(item);
+      const displayCategory = mapCategoryName(mappedCategory); 
+      navigation.navigate('ProductsList', { selectedCategory: mappedCategory, displayCategory });
+    };
+
+    return (
+      <TouchableOpacity onPress={handleCategoryPress}>
+        <Container category={item} image={categoryImage} />
+      </TouchableOpacity>
+    );
   };
 
+
+  
   return (
       <View className=' px-4'>
         
