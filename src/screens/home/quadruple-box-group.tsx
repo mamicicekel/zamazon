@@ -4,6 +4,7 @@ import { View, Text, Image } from '@/ui'
 import { QuadrupleBox } from './quadruple-box';
 import axios from 'axios';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { fetchSmartPhones } from '@/api';
 
 interface Product {
   id: number;
@@ -20,7 +21,7 @@ export const QuadrupleBoxGroup = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSmartPhones = async () => {
       try {
         const response = await axios.get('https://dummyjson.com/products/category/smartphones');
         setProducts(response.data.products);
@@ -31,7 +32,7 @@ export const QuadrupleBoxGroup = () => {
       }
     };
 
-    fetchData();
+    fetchSmartPhones();
   }, []);
 
   const renderItem = ({ item }: { item: Product }) => (

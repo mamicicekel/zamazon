@@ -1,7 +1,5 @@
-import { Dimensions } from 'react-native'
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { View, Image, Text, Button } from '@/ui'
-import { fetchSmartPhones } from '@/api';
 import TapRating from 'react-native-ratings/dist/TapRating';
 
 interface ProductItemProps {
@@ -12,22 +10,6 @@ interface ProductItemProps {
 }
 
 export const QuadrupleBox: React.FC<ProductItemProps> = ({title, price, thumbnail, rating}) => {
-  const width = Dimensions.get('window').width;
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const productData = await fetchSmartPhones(); // api.js dosyasındaki fetchData fonksiyonunu kullan
-        setProducts(productData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
 
   return (
     <View className='w-auto mx-4'>

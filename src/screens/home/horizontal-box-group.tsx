@@ -2,8 +2,8 @@ import { Dimensions, FlatList } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from '@/ui';
 import { QuadrupleBox } from './quadruple-box';
-import axios from 'axios';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { fetchProducts } from '@/api';
 
 interface Product {
   id: number;
@@ -22,13 +22,11 @@ export const HorizontalBoxGroup = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://dummyjson.com/products/');
-        const shuffledProducts = response.data.products.sort(() => Math.random() - 0.5);
+        const shuffledProducts = await fetchProducts();
         setProducts(shuffledProducts);
-        setLoading(false); // Veriler yüklendiğinde loading durumunu false yap
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false); // Hata durumunda da loading durumunu false yap
+        setLoading(false);
       }
     };
 

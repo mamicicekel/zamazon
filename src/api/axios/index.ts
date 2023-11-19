@@ -22,8 +22,19 @@ export const fetchSmartPhones = async () => {
 
 export const fetchProducts = async () => {
   try {
-    const response = await api.get('/products');
-    return response.data.products;
+    const response = await axios.get('https://dummyjson.com/products');
+    const shuffledProducts = response.data.products.sort(() => Math.random() - 0.5);
+    return shuffledProducts;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // You may want to handle the error in the component that calls this function
+  }
+}
+
+export const fetchCategories = async () => {
+  try {
+    const response = await api.get('/products/categories');
+    return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error; // Hata durumunda çağıran koda hata bilgisini iletmek için hatayı tekrar fırlat

@@ -1,11 +1,18 @@
-import { View } from 'react-native'
 import React from 'react'
-import { SafeAreaView, Text } from '@/ui'
+import { View, Input, SafeAreaView, Text, ScrollView } from '@/ui'
+import { List } from './list'
 
 export const Categories = () => {
   return (
     <SafeAreaView>
-      <Text>Categories</Text>
+      <ScrollView>
+      <View className='mx-4'>
+        <Input
+          placeholder='Search products'
+        />
+        </View>
+      <List/>
+      </ScrollView>
     </SafeAreaView>
   )
 }
