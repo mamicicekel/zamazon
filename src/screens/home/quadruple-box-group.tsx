@@ -40,7 +40,7 @@ export const QuadrupleBoxGroup = () => {
   );
 
   return (
-    <View className='flex-1 justify-center items-center'>
+    <View className=''>
       <Text className='self-start text-xl font-semibold mt-10 mb-3 ml-4 text-gray-700'>Opportunities for you</Text>
       {loading ? <SkeletonPlaceholder>
           <View style={{ flexDirection: 'row', alignItems: 'center'}}>
