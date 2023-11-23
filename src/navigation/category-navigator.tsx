@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 
-import { Categories, ProductsList } from '@/screens';
+import { Categories, ProductsList, Search } from '@/screens';
 
 export type CategoryStackParamList = {
   Categories: undefined;
   ProductsList: undefined;
+  Search: undefined;
 };
 
 const Stack = createNativeStackNavigator<CategoryStackParamList>();

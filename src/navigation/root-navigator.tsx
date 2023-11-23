@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 
 import { useAuth } from '@/core';
 import { useIsFirstTime } from '@/core/hooks';
-import { Onboarding } from '@/screens';
-
+import { Onboarding, Search } from '@/screens';
 import { AuthNavigator } from './auth-navigator';
 import { NavigationContainer } from './navigation-container';
 import { TabNavigator } from './tab-navigator';
+
 const Stack = createNativeStackNavigator();
 
 export const Root = () => {
