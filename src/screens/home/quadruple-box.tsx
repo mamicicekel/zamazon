@@ -18,7 +18,8 @@ export const QuadrupleBox: React.FC<ProductItemProps> = ({title, price, thumbnai
       isDisabled={true}
       defaultRating={rating}
       size={18}
-      starContainerStyle={{marginBottom:15, alignSelf:'flex-start'}}
+      starContainerStyle={{marginBottom:15, alignSelf:'flex-start', }}
+      showRating={false}
       />
       <Text className='text-gray-700 font-semibold' numberOfLines={1}>{title}</Text>
       <Text className='text-green-700 font-bold'> ${price}</Text>

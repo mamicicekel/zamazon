@@ -21,6 +21,7 @@ export const Search = () => {
         query: searchQuery,
       };
       setSearchHistory([newSearch, ...searchHistory]);
+      navigation.navigate('ProductList', { searchQuery: searchQuery });
     }
   };
 
