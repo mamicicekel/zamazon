@@ -13,6 +13,7 @@ export const api = axios.create({
 export const fetchSmartPhones = async () => {
   try {
     const response = await api.get('/products/category/smartphones');
+    
     return response.data.smartphones;
   } catch (error) {
     console.error('Error fetching data:', error);

@@ -8,3 +8,4 @@ export * from './register';
 export * from './categories/products-list'
 export * from './search/search'
 export * from './products/product-list'
+export * from './product/product'

@@ -19,9 +19,15 @@ type ProductsListProps = {
 interface Product {
   id: number;
   title: string;
+  description: string
   price: number;
-  thumbnail: string;
+  discountPercentage: number
   rating: number;
+  stock:number
+  brand: string
+  category: string
+  thumbnail: string;
+  images: string[];
 }
 export const ProductsList: React.FC<ProductsListProps> = ({ route }) => {
   const selectedCategory = route.params?.selectedCategory;
@@ -56,7 +62,8 @@ export const ProductsList: React.FC<ProductsListProps> = ({ route }) => {
   
 
   const renderItem = ({ item }: { item: Product }) => {
-      return <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating} />;
+      return <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating} images={item.images} description={item.description} brand={item.brand} stock={item.stock} discountPercentage={item.discountPercentage} id={0} category={item.category}/>
+
   };
 
   return (

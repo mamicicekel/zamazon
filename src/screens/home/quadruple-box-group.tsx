@@ -9,9 +9,15 @@ import { fetchSmartPhones } from '@/api';
 interface Product {
   id: number;
   title: string;
+  description: string
   price: number;
-  thumbnail: string;
+  discountPercentage: number
   rating: number;
+  stock:number
+  brand: string
+  category: string
+  thumbnail: string;
+  images: string[];
 }
 
 export const QuadrupleBoxGroup = () => {
@@ -24,19 +30,31 @@ export const QuadrupleBoxGroup = () => {
     const fetchSmartPhones = async () => {
       try {
         const response = await axios.get('https://dummyjson.com/products/category/smartphones');
-        setProducts(response.data.products);
+        
+        const productsWithImages = response.data.products.map((product: Product) => {
+          const reversedImages = product.images.slice().reverse(); // Create a copy and reverse it
+          const thumbnail = reversedImages.length > 0 ? reversedImages[0] : '';
+          return {
+            ...product,
+            thumbnail,
+            images: reversedImages,
+          };
+        });
+  
+        setProducts(productsWithImages);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
         setLoading(false);
       }
     };
-
+  
     fetchSmartPhones();
   }, []);
+  
 
   const renderItem = ({ item }: { item: Product }) => (
-    <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating}/>
+    <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating} images={item.images} description={item.description} brand={item.brand} stock={item.stock} discountPercentage={item.discountPercentage} id={0} category={item.category}/>
   );
 
   return (

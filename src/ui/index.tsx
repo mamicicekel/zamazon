@@ -5,3 +5,4 @@ export * from './icons';
 export * from './screen';
 export * from './theme';
 export * from './utils';
+export * from './core/pagination/page-indicator'

@@ -1,7 +1,7 @@
 import { Dimensions, FlatList } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useRoute, RouteProp } from '@react-navigation/native';
-import { SafeAreaView, Input, Text, View } from '@/ui';
+import { SafeAreaView, Input, Text, View, ScrollView } from '@/ui';
 import { fetchProducts } from '@/api';
 import { QuadrupleBox } from '../home/quadruple-box';
 import { useNavigation } from '@react-navigation/native';
@@ -13,10 +13,16 @@ type ProductListRouteParams = {
 
 interface Product {
   id: number;
-  title: any;
+  title: string;
+  description: string
   price: number;
-  thumbnail: string;
+  discountPercentage: number
   rating: number;
+  stock:number
+  brand: string
+  category: string
+  thumbnail: string;
+  images: string[];
 }
 
 export const ProductList = () => {
@@ -31,17 +37,25 @@ export const ProductList = () => {
     const fetchData = async () => {
       try {
         const response = await fetchProducts();
-        setProducts(response);
+        const productsWithImages = response.map((product: Product) => {
+          const reversedImages = product.images.slice().reverse(); 
+          const thumbnail = reversedImages.length > 0 ? reversedImages[0] : '';
+          return {
+            ...product,
+            thumbnail,
+            images: reversedImages,
+          };
+        });
+        setProducts(productsWithImages);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
-
   useEffect(() => {
     const filtered = products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -50,7 +64,7 @@ export const ProductList = () => {
   }, [searchQuery, products]);
 
   const renderItem = ({ item }: { item: Product }) => (
-    <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating} />
+    <QuadrupleBox title={item.title} price={item.price} thumbnail={item.thumbnail} rating={item.rating} images={item.images} description={item.description} brand={item.brand} stock={item.stock} discountPercentage={item.discountPercentage} id={0} category={item.category}/>
   );
 
   const renderSkeleton = () => (
@@ -70,7 +84,8 @@ export const ProductList = () => {
 
   return (
     <SafeAreaView className='flex-1'>
-      <Input value={searchQuery} onFocus={() => navigation.navigate('Search')} />
+      <ScrollView>
+      <View className='mx-4'><Input value={searchQuery} onFocus={() => navigation.navigate('Search')} /></View>
       {loading ? (
         renderSkeleton()
       ) : filteredProducts.length > 0 ? (
@@ -87,6 +102,7 @@ export const ProductList = () => {
           <Text className='text-2xl'>{`No products found for "${searchQuery}"`}</Text>
         </View>
       )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
