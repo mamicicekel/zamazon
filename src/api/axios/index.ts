@@ -28,7 +28,7 @@ export const fetchProducts = async () => {
     return shuffledProducts;
   } catch (error) {
     console.error('Error fetching data:', error);
-    throw error; // You may want to handle the error in the component that calls this function
+    throw error;  // Hata durumunda çağıran koda hata bilgisini iletmek için hatayı tekrar fırlat
   }
 }
 

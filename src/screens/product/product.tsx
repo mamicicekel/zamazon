@@ -4,6 +4,7 @@ import { SafeAreaView, Text, Image, View, Button, PageIndicator } from '@/ui';
 import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
 import { useRoute } from '@react-navigation/native';
 import TapRating from 'react-native-ratings/dist/TapRating';
+import { useCartStore } from '@/core/cartStore';
 
 interface ProductParams {
   id: number;
@@ -23,11 +24,17 @@ export const Product = () => {
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('window').height;
   const route = useRoute();
-  const { title, price, rating, images, description, discountPercentage, stock, brand, category } = route.params as ProductParams;
+  const { title, price, rating, images, description, discountPercentage, stock, brand, thumbnail } = route.params as ProductParams;
   const carouselRef = useRef<ICarouselInstance>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  const addToCart = useCartStore((state) => state.addToCart);
 
+  const handleAddToCart = () => {
+    const itemToAdd = { title, thumbnail, price };
+    addToCart(itemToAdd);
+  };
+  
   return (
     <SafeAreaView className='flex-1'>
         <Carousel
@@ -61,7 +68,7 @@ export const Product = () => {
         <Text className='flex-1 px-4'>{description}</Text>
         <View className='flex-row items-center mx-4 mb-4'>
           <Text className='flex-1 text-3xl font-semibold'>${price}</Text>
-          <Button label='Add to Cart' variant='secondary'/>
+          <Button label='Add to Cart' variant='secondary' onPress={handleAddToCart}/>
         </View>
     </SafeAreaView>
   );

@@ -11,3 +11,4 @@ export * from './categories';
 export * from './support';
 export * from './website';
 export * from './profile';
+export * from './trash';
