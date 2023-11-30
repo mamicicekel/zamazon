@@ -1,13 +1,10 @@
 import { Dimensions } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { SafeAreaView, Text, Image, View, ScrollView, Button } from '@/ui'
 import { Item } from './item';
 import { ItemsContainer } from './items-container';
 import { useAuth } from '@/core';
 import LinearGradient from 'react-native-linear-gradient';
-import { useColorScheme } from 'nativewind';
-import colors from '@/ui/theme/colors';
-import { Env } from '@env';
 import { Website } from '@/ui/icons';
 import { supabase } from '@/api';
 
@@ -24,9 +21,38 @@ export const Profile = () => {
       console.error('Sign Out error:', error);
     }
   };
-  const { colorScheme } = useColorScheme();
-  const iconColor =
-    colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('Hata:', error);
+        } else if (data) {
+          const userId = data.session?.user.id;
+          const { data: userData, error: userError } = await supabase
+            .from('Users')
+            .select('name')
+            .eq('id', userId)
+            .single();
+
+          if (userError) {
+            console.error('Hata:', userError);
+          } else if (userData) {
+            setUserName(userData.name);
+          }
+        }
+      } catch (error) {
+        console.error('Hata:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -36,7 +62,7 @@ export const Profile = () => {
           className="h-20 w-20 rounded-full"
           source={require('../../../assets/default-profile.jpg')}
         />
-        <Text className='text-white font-semibold text-2xl mt-5'>Username</Text>
+        <Text className='text-white font-semibold text-2xl mt-5'>{userName}</Text>
         </View>
       </LinearGradient>
       <View className="flex-1 px-2 pt-10">

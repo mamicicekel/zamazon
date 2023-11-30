@@ -26,9 +26,10 @@ export const Register = () => {
       }
 
       if (data) {
+
         const { error } = await supabase
         .from('Users')
-        .insert({ email:formData.email, password:formData.password })
+        .insert({ id:data.session?.user.id,email:formData.email, password:formData.password, name:formData.name, surname: formData.surname  })
         navigate('Login')
         showMessage({
           message: 'Account created successfully',
@@ -42,6 +43,7 @@ export const Register = () => {
       setLoading(false);
     }
   };
+  
   return (
     <>
       <FocusAwareStatusBar />

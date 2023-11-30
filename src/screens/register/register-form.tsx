@@ -7,6 +7,14 @@ import * as z from 'zod';
 import { Button, ControlledInput, Image, Text, View } from '@/ui';
 
 const schema = z.object({
+  name: z
+    .string({
+      required_error: 'Name is required',
+    }),
+    surname: z
+    .string({
+      required_error: 'Name is required',
+    }),
   email: z
     .string({
       required_error: 'Email is required',
@@ -42,6 +50,20 @@ export const RegisterForm = ({ onSubmit = () => {} }: RegisterFormProps) => {
       <Image 
         className="h-16 w-44 object-cover self-center mb-20"
         source={require('../../../assets/logo.png')}
+      />
+      <ControlledInput
+        testID="name-input"
+        control={control}
+        name="name"
+        label="Name"
+        placeholder='Name'
+      />
+      <ControlledInput
+        testID="surname-input"
+        control={control}
+        name="surname"
+        label="Surname"
+        placeholder='Surname'
       />
       <ControlledInput
         testID="email-input"

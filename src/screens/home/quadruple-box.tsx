@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Image, Text, Button, TouchableOpacity } from '@/ui';
 import TapRating from 'react-native-ratings/dist/TapRating';
 import { useNavigation } from '@react-navigation/native';
+import { useCartStore } from '@/core/cartStore';
 
 interface ProductItemProps {
   id: number;
   title: string;
-  description: string
   price: number;
+  description: string
   discountPercentage: number
   rating: number;
   stock:number
@@ -22,10 +23,23 @@ export const QuadrupleBox: React.FC<ProductItemProps> = ({ title, price, descrip
 
   const goToProductPage = () => {
     navigation.navigate('Product', {
-      title, price, description, thumbnail, rating, images,discountPercentage, stock, brand, category
+      title, 
+      price, 
+      description, 
+      thumbnail, 
+      rating, 
+      images, 
+      discountPercentage, 
+      stock, 
+      brand, 
+      category
     });
   };
-
+  const addToCart = useCartStore((state) => state.addToCart);
+  const handleAddToCart = () => {
+    const itemToAdd = { title, thumbnail, price };
+    addToCart(itemToAdd);
+  };
   return (
     <TouchableOpacity onPress={goToProductPage}>
       <View className='w-auto mx-4 max-w-[180px]'>
@@ -41,7 +55,7 @@ export const QuadrupleBox: React.FC<ProductItemProps> = ({ title, price, descrip
           {title}
         </Text>
         <Text className='text-green-700 font-bold'> ${price}</Text>
-        <Button label='Sepete Ekle' variant='outlineAdd' />
+        <Button label='Sepete Ekle' variant='outlineAdd' onPress={handleAddToCart}/>
       </View>
     </TouchableOpacity>
   );
