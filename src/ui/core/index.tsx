@@ -11,3 +11,4 @@ export * from './select/options';
 export * from './text';
 export * from './touchable-opacity';
 export * from './view';
+export * from './pagination'
