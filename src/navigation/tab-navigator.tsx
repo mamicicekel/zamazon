@@ -8,7 +8,7 @@ import type { SvgProps } from 'react-native-svg';
 
 import { Home, Categories, Cart, Profile } from '@/screens';
 import { CategoryNavigator } from './category-navigator';
-import { HomeNavigator } from './home-navigaor';
+import { HomeNavigator } from './home-navigator';
 
 import {
   colors,

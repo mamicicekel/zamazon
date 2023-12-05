@@ -16,11 +16,11 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
   return (
     <Container
       onPress={onPress}
-      className="flex-1 flex-row items-center justify-between px-4 py-2 border-b-[1px] border-neutral-200 dark:border-charcoal-700 dark:bg-charcoal-800"
+      className="flex-1 flex-row items-center justify-between px-4 py-2 border-b-[1px] border-neutral-200 dark:border-charcoal-700 dark:bg-charcoal-900"
     >
       <View className="flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}
-        <Text variant="md" className='text-xl text-neutral-700'>{text}</Text>
+        <Text variant="md" className='text-xl text-neutral-700 dark:text-gray-200'>{text}</Text>
       </View>
       <View className="flex-row items-center">
         <Text variant="md" className="text-neutral-600 dark:text-white">

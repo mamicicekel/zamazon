@@ -3,14 +3,14 @@ import * as React from 'react';
 
 import { Home, Search, ProductList, Product } from '@/screens';
 
-export type CategoryStackParamList = {
+export type HomeStackParamList = {
   Home: undefined;
   Search: undefined;
   ProductList: undefined;
   Product: undefined;
 };
 
-const Stack = createNativeStackNavigator<CategoryStackParamList>();
+const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 export const HomeNavigator = () => {
   return (
